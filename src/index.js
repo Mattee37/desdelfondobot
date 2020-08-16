@@ -1,6 +1,8 @@
 import tmi from "tmi.js";
 import "dotenv/config";
 
+console.log(procces.env.NAME);
+
 const client = new tmi.Client({
   connection: {
     secure: true,

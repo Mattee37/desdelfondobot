@@ -1,5 +1,13 @@
 import tmi from "tmi.js";
+import express from "express";
 import "dotenv/config";
+
+const app = express();
+const port = proccess.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Listen on port ${port}`);
+});
 
 const client = new tmi.Client({
   connection: {

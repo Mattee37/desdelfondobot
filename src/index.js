@@ -1,27 +1,25 @@
 import tmi from "tmi.js";
-import express from "express";
 import "dotenv/config";
 
-const app = express();
-const port = proccess.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Listen on port ${port}`);
-});
-
-const client = new tmi.Client({
+const options = {
   connection: {
     secure: true,
     reconnect: true,
+    port: process.env.PORT || 3000,
   },
   identity: {
     username: process.env.NAME,
     password: process.env.OAUTH,
   },
   channels: ["desdelfondo"],
-});
+};
 
-client.connect().then(console.log("Bot funcionando...")).catch(console.error);
+const client = new tmi.Client(options);
+
+client
+  .connect()
+  .then(console.log(`Bot funcionando en puerto ${options.connection.port}`))
+  .catch(console.error);
 
 const nombreDeTrapero = (raw) => {
   const part1 = [

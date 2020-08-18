@@ -12,7 +12,7 @@ const options = {
     username: process.env.NAME,
     password: process.env.OAUTH,
   },
-  channels: ["desdelfondo"],
+  channels: ["mattee37", "desdelfondo"],
 };
 
 const client = new tmi.Client(options);

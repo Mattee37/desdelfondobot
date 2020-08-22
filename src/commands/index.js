@@ -1,4 +1,4 @@
-import { nombreDeTrapero, dice } from "../helpers";
+import { nombreDeTrapero, dice, getGif } from "../helpers";
 
 const commands = (channel, tags, message, client) => {
   if (message.toLowerCase().startsWith("!comandos", 0)) {
@@ -27,6 +27,30 @@ const commands = (channel, tags, message, client) => {
         channel,
         `@${tags["display-name"]} Le erraste maquina, proba con " !trapero 666 "`
       );
+    }
+  }
+
+  if (message.toLowerCase().startsWith("!gif ", 0)) {
+    const raw = message.split("!gif ")[1];
+
+    if (raw === "?") {
+      client.say(
+        channel,
+        `@${tags["display-name"]} utilizá una palabra para buscar, ejemplo => " !gif peronismo "`
+      );
+    } else if (raw !== " " && raw !== "?") {
+      getGif(raw)
+        .then((r) => {
+          if (r.exist) {
+            client.say(
+              channel,
+              `@${tags["display-name"]} toma, aca tenes tu gif papanata => ${r.text}`
+            );
+          } else {
+            client.say(channel, `@${tags["display-name"]} ${r.text}`);
+          }
+        })
+        .catch(console.error);
     }
   }
 

@@ -1,3 +1,6 @@
+import "dotenv/config";
+import axios from "axios";
+
 export const nombreDeTrapero = (raw) => {
   const part1 = [
     "Big",
@@ -43,4 +46,18 @@ export const nombreDeTrapero = (raw) => {
 
 export const dice = (n) => {
   return (Math.random() * n) / 100;
+};
+
+export const getGif = async (q) => {
+  const query = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.TOKEN}&q=${q}&limit=1&offset=0&rating=r&lang=en`;
+  const response = await axios.get(query);
+  const msg = {};
+  if (response.data.pagination.count === 0) {
+    msg.exist = false;
+    msg.text = "proba otra cosa, eso no existe crack.";
+  } else {
+    msg.exist = true;
+    msg.text = response.data.data[0].images.preview.mp4;
+  }
+  return msg;
 };

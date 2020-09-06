@@ -4,7 +4,7 @@ const commands = (channel, tags, message, client) => {
   if (message.toLowerCase().startsWith("!comandos", 0)) {
     client.say(
       channel,
-      "Lista de comandos: ' !trapero ', ' !test ', ' !dice ', ' !gif '. Agregales un ' ? ' al final para saber como se usa cada uno, ejemplo ' !trapero ? '"
+      "Lista de comandos: ' !trapero '. Agregales un ' ? ' al final para saber como se usa cada uno, ejemplo ' !trapero ? '"
     );
   }
 
